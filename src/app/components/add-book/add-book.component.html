@@ -1,0 +1,25 @@
+<div>
+  Title: <input type="text" #title>
+</div>
+<div>
+  Author: <input type="text" #author>
+</div>
+<div>
+  Price: <input type="text" #price>
+</div>
+<div>
+  Rating:
+  <select #rating>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
+</div>
+
+<button 
+  (click)="handleSaveBtnClick(title, author, price, rating)"
+>
+  Save
+</button>

@@ -3,6 +3,7 @@ export class Book {
     author: string;
     price: number;
     rating: number;
+    sold: boolean;
 
     constructor(title: string, 
         author : string, 
@@ -12,5 +13,6 @@ export class Book {
         this.author = author;
         this.price = price;
         this.rating = rating;
+        this.sold = false;
     }
 }

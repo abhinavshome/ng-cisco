@@ -1,4 +1,5 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Cart, Item } from './../../models/cart';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
 
 @Component({
@@ -8,11 +9,13 @@ import { Book } from '../../models/book';
 })
 export class BookListComponent implements OnInit {
   books: Book[];
+  cart: Cart;
 
   constructor() {
   }
 
   ngOnInit() {
+    this.cart = new Cart([], 0);
     this.books = [
       new Book(
         'The Alchemist',
@@ -47,10 +50,32 @@ export class BookListComponent implements OnInit {
       book.rating++;
   }
 
-  rateDown(index: number) {
-    let book = this.books[index];
+  rateDown(book: Book) {
     if (book.rating > 1)
       book.rating--;
+  }
+
+  toggleSold(book: Book) {
+    book.sold = !book.sold;
+  }
+
+  addBook(book: Book) {
+    this.books.push(book);
+  }
+
+  addToCart(book: Book) {
+    let item = this.cart.items.find(function(i) {
+      return i.name == book.title; 
+    });
+
+    if(item) {
+      item.qty++;
+    } else {
+      item = new Item(book.title,1, book.price);
+      this.cart.items.push(item);
+    }
+    
+    this.cart.totalPrice += book.price;
   }
 
 }

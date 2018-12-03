@@ -1,0 +1,14 @@
+<div [class.high]="book.rating>3">
+  <div class="title">{{book.title}}</div>
+  <div class="author">{{book.author}}</div>
+  <div>{{book.price}}</div>
+  <div>{{book.rating}}</div>
+  <div>{{book.sold ? 'SOLD OUT' : 'AVAILABLE'}}</div>
+  <button (click)="handleRateUpBtnClick()">&uarr;</button>
+  <button (click)="handleRateDownBtnClick()">&darr;</button>
+  <button (click)="handleMarkBtnClick()">
+    {{ book.sold ? 'Mark as unsold' : 'Mark as sold' }}
+  </button>
+  <button (click)="handleAddCartBtnClick()">+</button>
+  <hr />
+</div>
