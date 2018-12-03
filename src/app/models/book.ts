@@ -4,7 +4,10 @@ export class Book {
     price: number;
     rating: number;
 
-    constructor(title, author, price, rating) {
+    constructor(title: string, 
+        author : string, 
+        price: number, 
+        rating: number) {
         this.title = title;
         this.author = author;
         this.price = price;
