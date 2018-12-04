@@ -7,6 +7,7 @@ import { BookListComponent } from './components/book-list/book-list.component';
 import { BookItemComponent } from './components/book-item/book-item.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { TitlecasePipe } from './pipes/titlecase.pipe';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     BookListComponent,
     BookItemComponent,
     AddBookComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    TitlecasePipe
   ],
   imports: [
     BrowserModule,

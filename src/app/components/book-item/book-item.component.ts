@@ -12,6 +12,7 @@ export class BookItemComponent implements OnInit {
   @Output() rateDownBtnClick = new EventEmitter();
   @Output() markSoldBtnClick = new EventEmitter();
   @Output() addCartBtnClick = new EventEmitter();
+  today = new Date();
   constructor() { }
 
   ngOnInit() {
