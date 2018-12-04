@@ -3,6 +3,7 @@ import { BookService } from './../../services/book.service';
 import { Cart, Item } from './../../models/cart';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
+import { Http, Response } from '@angular/http';
 
 @Component({
   selector: 'book-list',
@@ -15,30 +16,37 @@ export class BookListComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private cartService: CartService
+    private cartService: CartService,
+    private http: Http
   ) {
-    
+
   }
 
   ngOnInit() {
     this.cart = this.cartService.getCart();
-    this.books = this.bookService.getBooks();
+    
+    this.bookService
+      .getBooks()
+      .subscribe(res => this.books = res.json());
   }
 
+
   rateUp(book: Book) {
-    this.bookService.rateUp(book);
+    this.bookService.rateUp(book).subscribe();
   }
 
   rateDown(book: Book) {
-    this.bookService.rateDown(book);
+    this.bookService.rateDown(book).subscribe();
   }
 
   toggleSold(book: Book) {
-    this.bookService.toggleSold(book);
+    this.bookService.toggleSold(book).subscribe();
   }
 
   addBook(book: Book) {
-    this.bookService.addBook(book);
+    this.bookService
+      .addBook(book)
+      .subscribe(res => this.books.push(res.json()));
   }
 
   addToCart(book: Book) {

@@ -1,13 +1,16 @@
+import { Http, Response } from '@angular/http';
 import { Book } from './../models/book';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
   private books: Book[];
-  
-  constructor() {
+  private url = 'http://localhost:3000/books';
+
+  constructor(private http: Http) {
     console.log('service instance created');
     this.books = [
       new Book(
@@ -37,26 +40,29 @@ export class BookService {
     ];
   }
 
-  getBooks() : Book[] {
-    return this.books;
+  getBooks(): Observable<Response> {
+    return this.http.get(this.url);
   }
 
   rateUp(book: Book) {
     if (book.rating < 5)
       book.rating++;
+    return this.http.put(this.url + '/' + book.id, book);
   }
 
   rateDown(book: Book) {
     if (book.rating > 1)
       book.rating--;
+    return this.http.put(this.url + '/' + book.id, book);
   }
 
   toggleSold(book: Book) {
     book.sold = !book.sold;
+    return this.http.put(this.url + '/' + book.id, book);
   }
 
   addBook(book: Book) {
-    this.books.push(book);
+    return this.http.post(this.url, book);
   }
 
- }
+}
