@@ -1,3 +1,5 @@
+import { CartService } from './../../services/cart.service';
+import { BookService } from './../../services/book.service';
 import { Cart, Item } from './../../models/cart';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
@@ -11,71 +13,36 @@ export class BookListComponent implements OnInit {
   books: Book[];
   cart: Cart;
 
-  constructor() {
+  constructor(
+    private bookService: BookService,
+    private cartService: CartService
+  ) {
+    
   }
 
   ngOnInit() {
-    this.cart = new Cart([], 0);
-    this.books = [
-      new Book(
-        'The Alchemist',
-        'Paulo Cohelo',
-        23,
-        4
-      ),
-      new Book(
-        '4 hour work week',
-        'Tim Ferris',
-        98,
-        5
-      ),
-      new Book(
-        'Power of Now',
-        'Eckhart Tolle',
-        20,
-        3
-      ),
-      new Book(
-        '5 point someone',
-        'Chetan Bhagat',
-        11,
-        2
-      )
-    ]
-      ;
+    this.cart = this.cartService.getCart();
+    this.books = this.bookService.getBooks();
   }
 
   rateUp(book: Book) {
-    if (book.rating < 5)
-      book.rating++;
+    this.bookService.rateUp(book);
   }
 
   rateDown(book: Book) {
-    if (book.rating > 1)
-      book.rating--;
+    this.bookService.rateDown(book);
   }
 
   toggleSold(book: Book) {
-    book.sold = !book.sold;
+    this.bookService.toggleSold(book);
   }
 
   addBook(book: Book) {
-    this.books.push(book);
+    this.bookService.addBook(book);
   }
 
   addToCart(book: Book) {
-    let item = this.cart.items.find(function(i) {
-      return i.name == book.title; 
-    });
-
-    if(item) {
-      item.qty++;
-    } else {
-      item = new Item(book.title,1, book.price);
-      this.cart.items.push(item);
-    }
-    
-    this.cart.totalPrice += book.price;
+    this.cartService.addToCart(book);
   }
 
 }
