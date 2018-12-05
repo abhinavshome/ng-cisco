@@ -1,13 +1,16 @@
 <form #addBookForm="ngForm" (ngSubmit)="addBook();addBookForm.reset()">
   <div>
     Title:
-    <input name="title" type="text" [(ngModel)]="newBook.title" #title="ngModel" required minlength="4" />
+    <input name="title" type="text" [(ngModel)]="newBook.title" #title="ngModel" required minlength="4" titlecase/>
     <div *ngIf="title.invalid && (title.dirty || title.touched)">
       <div *ngIf="title.errors.required" class="error">
         Title is required
       </div>
       <div *ngIf="title.errors.minlength" class="error">
         Min 4 chars
+      </div>
+      <div *ngIf="title.errors.titlecase" class="error">
+        Not proper titlecase
       </div>
     </div>
   </div>

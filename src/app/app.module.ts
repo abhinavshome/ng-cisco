@@ -11,6 +11,9 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { TitlecasePipe } from './pipes/titlecase.pipe';
 import { AboutComponent } from './components/about/about.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
+import {MatCardModule} from '@angular/material/card';
+import { PopupComponent } from './components/popup/popup.component';
+import { TitlecaseDirective } from './titlecase.directive';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,16 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
     ShoppingCartComponent,
     TitlecasePipe,
     AboutComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    PopupComponent,
+    TitlecaseDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

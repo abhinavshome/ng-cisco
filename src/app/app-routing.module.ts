@@ -6,13 +6,13 @@ import { BookListComponent } from './components/book-list/book-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+
 const routes: Routes = [
   {path: 'home', component: BookListComponent},
   {path: 'about', component: AboutComponent},
   {path: 'cart', component: ShoppingCartComponent},
   {path: 'add-book', component: AddBookComponent},
-  {path: 'book-details/:id', component: BookDetailsComponent},
-}
+  {path: 'book-details/:id', component: BookDetailsComponent}
 ];
 
 @NgModule({

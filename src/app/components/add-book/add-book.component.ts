@@ -1,3 +1,4 @@
+import { PopupService } from './../../services/popup.service';
 import { BookService } from './../../services/book.service';
 import { Book } from './../../models/book';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
@@ -13,7 +14,8 @@ export class AddBookComponent implements OnInit {
   newBook: Book;
 
   constructor(private bookService: BookService,
-    private router: Router) { }
+    private router: Router,
+    private popupService: PopupService) { }
 
   ngOnInit() {
     this.newBook = new Book(null, null, null, null);
@@ -21,6 +23,7 @@ export class AddBookComponent implements OnInit {
 
 
   addBook(book: Book) {
+    this.popupService.setMessage('Are you sure?');
     this.bookService
       .addBook(this.newBook)
       .subscribe(res => this.router.navigate(['/home']));
