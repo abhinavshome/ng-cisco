@@ -1,5 +1,7 @@
+import { BookService } from './../../services/book.service';
 import { Book } from './../../models/book';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-book',
@@ -10,32 +12,18 @@ export class AddBookComponent implements OnInit {
   @Output() addBookFormSubmit = new EventEmitter();
   newBook: Book;
 
-  constructor() { }
+  constructor(private bookService: BookService,
+    private router: Router) { }
 
   ngOnInit() {
     this.newBook = new Book(null, null, null, null);
   }
 
-  handleFormSubmit() {
-    this.newBook.rating = +this.newBook.rating;
-    this.newBook.price = +this.newBook.price;
-    this.addBookFormSubmit.emit(this.newBook);
-    this.newBook = new Book('Rh', null, null, null);
-  }
 
-  // handleSaveBtnClick(
-  //   title: HTMLInputElement,
-  //   author: HTMLInputElement,
-  //   price: HTMLInputElement,
-  //   rating: HTMLInputElement,
-  // ) {
-  //   let newBook = new Book(
-  //       title.value,
-  //       author.value,
-  //       +price.value,
-  //       +rating.value
-  //   );
-  //   this.addBookFormSubmit.emit(newBook);
-  // }
+  addBook(book: Book) {
+    this.bookService
+      .addBook(this.newBook)
+      .subscribe(res => this.router.navigate(['/home']));
+  }
 
 }

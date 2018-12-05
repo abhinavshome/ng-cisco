@@ -1,11 +1,5 @@
-<shopping-cart [cart]="cart"></shopping-cart>
-<add-book
-  (addBookFormSubmit)="addBook($event)"
-></add-book>
-<div 
-  *ngFor="let book of books; let i = index;"
->
   <book-item 
+    *ngFor="let book of books; let i = index;"
     [book]="book"
     (rateUpBtnClick)="rateUp(book)"
     (rateDownBtnClick)="rateDown(book)"
@@ -13,4 +7,3 @@
     (addCartBtnClick)="addToCart(book)"
   >
   </book-item>
-</div>

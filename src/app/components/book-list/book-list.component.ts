@@ -23,8 +23,6 @@ export class BookListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cart = this.cartService.getCart();
-    
     this.bookService
       .getBooks()
       .subscribe(res => this.books = res.json());
@@ -41,12 +39,6 @@ export class BookListComponent implements OnInit {
 
   toggleSold(book: Book) {
     this.bookService.toggleSold(book).subscribe();
-  }
-
-  addBook(book: Book) {
-    this.bookService
-      .addBook(book)
-      .subscribe(res => this.books.push(res.json()));
   }
 
   addToCart(book: Book) {

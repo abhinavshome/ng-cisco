@@ -38,6 +38,14 @@
       "rating": 5,
       "sold": false,
       "id": 5
+    },
+    {
+      "title": "2 states",
+      "author": "Chetan Bhagat",
+      "price": 45,
+      "rating": 4,
+      "sold": false,
+      "id": 6
     }
   ]
 }
